@@ -1,0 +1,51 @@
+# src/guide_creator_flow/crews/content_crew/config/tasks.yaml
+write_section_task:
+  description: >
+    Write a comprehensive section body in a market report for the section "{section_title}"
+
+    Section description: {section_description}
+    Target audience: {audience_level} level learners
+    Source information: {source_text}
+
+    Your content should:
+    1. Synthesize relevant information from the source text
+    2. Explain all key developments clearly
+    4. Closely follow the section description
+    5. Be approximately 50-100 words in length
+
+    Format your content in Markdown, but only write the body for this section. Do not include any titles/headings.
+  expected_output: >
+    A well-structured, comprehensive section in Markdown format that thoroughly
+    explains the topic and is appropriate for the target audience. Approximately 50-100 words total.
+  agent: content_writer
+  guardrails: >
+    Do NOT use headings greater than ###. Only use ### or smaller headings.
+    Do NOT include any code fences (like ```markdown or ```)
+    Do NOT include the {section_title} in your response.
+    Ensure the total output has approximately 50-100 words only.
+
+review_section_task:
+  description: >
+    Review and improve the draft from the previous task on "{section_title}":
+
+    Target audience: {audience_level} level learners
+
+    Your review should:
+    1. Fix any grammatical or spelling errors
+    2. Improve clarity and readability
+    3. Ensure content is comprehensive and accurate
+    5. Enhance the structure and flow
+    6. Add any missing key information
+
+    Provide the improved version of the section in Markdown format.
+  expected_output: >
+    An improved, polished version of the section that maintains the original
+    structure but enhances clarity, accuracy, and consistency.
+  agent: content_reviewer
+  context:
+    - write_section_task
+  guardrails: >
+    Do NOT include any headings (no #, ##, etc.).
+    Do NOT include any code fences (like ```markdown or ```)
+    Do not restate the section title. Only return body text.
+    Ensure the total output has approximately 50-100 words only.

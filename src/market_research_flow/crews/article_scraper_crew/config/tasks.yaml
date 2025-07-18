@@ -1,0 +1,17 @@
+scrape_article_task:
+  description: >
+    Given a URL: {url}, scrape the article page and extract the main body text.
+    Focus on paragraphs of actual article content.
+  expected_output: >
+    The full article text as plain text.
+  agent: scraper_agent
+
+summarize_article_task:
+  description: >
+    Summarize the provided article text into a concise version of around 100 words.
+    Retain key points, names, and essential details.
+  expected_output: >
+    A 100-word summary of the article content.
+  agent: summarizer_agent
+  context:
+    - scrape_article_task

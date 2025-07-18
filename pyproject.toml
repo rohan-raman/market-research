@@ -1,0 +1,22 @@
+[project]
+name = "market_research_flow"
+version = "0.1.0"
+description = "market_research_flow using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[tools]>=0.140.0,<1.0.0",
+    "feedparser>=6.0.11"
+]
+
+[project.scripts]
+kickoff = "market_research_flow.main:kickoff"
+run_crew = "market_research_flow.main:kickoff"
+plot = "market_research_flow.main:plot"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "flow"
